@@ -1,0 +1,16 @@
+{
+  "name": "interviews-ts",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "@types/chai": "^4.0.4",
+    "@types/mocha": "^2.2.43",
+    "@types/node": "^8.0.32",
+    "chai": "3.5.x",
+    "mocha": "2.4.x",
+    "tslint": "^5.5.0",
+    "typescript": "^2.3.2"
+  }
+}

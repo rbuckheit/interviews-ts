@@ -1,0 +1,24 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "system",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "strictNullChecks": true,
+    "outDir": "build",
+    "sourceMap": true,
+    "allowJs": false,
+    "target": "ES6",
+    "module": "commonjs",
+    "strict": true,
+    "pretty": true,
+    "types": ["mocha", "node"]
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
