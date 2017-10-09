@@ -1,7 +1,7 @@
 TSLINT      = ./node_modules/.bin/tslint
 SRC         = $(shell find . -name "*.ts" -not -path './node_modules/*')
 BUILD_FILES = $(shell find build -name "*.js")
-MOCHA       = ./node_modules/.bin/mocha --harmony
+MOCHA       = ./node_modules/.bin/mocha -t 1000 --harmony
 
 .PHONY: build
 build:
