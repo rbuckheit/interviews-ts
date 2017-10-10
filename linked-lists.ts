@@ -26,10 +26,8 @@ function removeDupes<T> (list: ListNode<T>): ListNode<T> {
       $current = $current.next;
     }
   }
-
   return list;
 };
-
 
 // Write a function to remove duplicates with no additional buffer / space
 function removeDupesNoBuffer<T> (list: ListNode<T>): ListNode<T> {
