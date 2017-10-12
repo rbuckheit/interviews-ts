@@ -8,23 +8,23 @@ import {expect} from 'chai';
 type Year = string; // ex: '2017'
 
 interface Person {
-  birthyear: Year,
-  deathyear: Year,
+  birthyear: Year;
+  deathyear: Year;
 }
 
 interface YearCounts {
-  born: number,
-  died: number,
+  born: number;
+  died: number;
 }
 
-const computeMostAliveYear = (people: Array<Person>) : Year => {
+const computeMostAliveYear = (people: Array<Person>): Year => {
   if (people.length === 0){
     throw new Error('cannot compute most alive year with no data');
   }
 
-  const map: Map<Year,YearCounts> = new Map<Year,YearCounts>();
+  const map: Map<Year, YearCounts> = new Map<Year, YearCounts>();
 
-  people.forEach(person => {
+  people.forEach((person) => {
     const birthYear: Year = person.birthyear;
     const deathYear: Year = person.deathyear;
 
@@ -44,7 +44,7 @@ const computeMostAliveYear = (people: Array<Person>) : Year => {
   let highestLivingCount: number = -1;
   let rollingLivingCount = 0;
 
-  Array.from(map.keys()).sort().forEach(year => {
+  Array.from(map.keys()).sort().forEach((year) => {
     const records = map.get(year);
     rollingLivingCount += records!.born;
     rollingLivingCount -= records!.died;

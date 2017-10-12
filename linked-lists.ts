@@ -1,13 +1,13 @@
 import {expect} from 'chai';
 
 export interface ListNode<T> {
-  val: T,
-  next: ListNode<T> | null,
-};
+  val: T;
+  next: ListNode<T> | null;
+}
 
 // write a function to remove duplicates from a list
 
-function removeDupes<T> (list: ListNode<T>): ListNode<T> {
+function removeDupes<T>(list: ListNode<T>): ListNode<T> {
   if (list == null) {
     return list;
   }
@@ -27,10 +27,10 @@ function removeDupes<T> (list: ListNode<T>): ListNode<T> {
     }
   }
   return list;
-};
+}
 
 // Write a function to remove duplicates with no additional buffer / space
-function removeDupesNoBuffer<T> (list: ListNode<T>): ListNode<T> {
+function removeDupesNoBuffer<T>(list: ListNode<T>): ListNode<T> {
   if (list == null) {
     return list;
   }
@@ -52,28 +52,28 @@ function removeDupesNoBuffer<T> (list: ListNode<T>): ListNode<T> {
   }
 
   return list;
-};
+}
 
 const removeDupesAlgos = [
   {function: removeDupes, name: 'removeDupes'},
   {function: removeDupesNoBuffer, name: 'removeDupesNoBuffer'},
 ];
 
-removeDupesAlgos.forEach(algo => {
+removeDupesAlgos.forEach((algo) => {
   describe('#' + algo.name, () => {
     it('removes single dupe immediately following', () => {
       expect(algo.function({val: 2, next: {val: 2, next: {val: 3, next: null}}}))
-        .to.deep.equal({val: 2, next: {val:3, next: null}});
+        .to.deep.equal({val: 2, next: {val: 3, next: null}});
     });
 
     it('removes single dupe with gap', () => {
       expect(algo.function({val: 2, next: {val: 3, next: {val: 2, next: null}}}))
-        .to.deep.equal({val: 2, next: {val:3, next: null}});
+        .to.deep.equal({val: 2, next: {val: 3, next: null}});
     });
 
     it('removes double dupe immediately following', () => {
       expect(algo.function({val: 2, next: {val: 2, next: {val: 2, next: {val: 3, next: null}}}}))
-        .to.deep.equal({val: 2, next: {val:3, next: null}});
+        .to.deep.equal({val: 2, next: {val: 3, next: null}});
     });
   });
 });
@@ -151,6 +151,6 @@ function partition(
 describe('#partition', () => {
   it('should partition a list', () => {
     expect(partition({val: 2, next: {val: 5, next: {val: 3, next: {val: 8, next: null}}}}, 5)).to.deep.equal(
-      {val: 2, next: {val: 3, next: {val: 5, next: {val: 8, next: null}}}})
-  })
+      {val: 2, next: {val: 3, next: {val: 5, next: {val: 8, next: null}}}});
+  });
 });

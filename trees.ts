@@ -97,7 +97,7 @@ function postorderIterative<T>(tree: TreeNode<T> | null): void {
 }
 
 const listToTree = (
-  list: Array<number>
+  list: Array<number>,
 ): TreeNode<number> | null => {
   if (list.length === 0) {
     return null;
@@ -106,15 +106,15 @@ const listToTree = (
     const root = {
       val: list[midpoint],
       left: listToTree(list.slice(0, midpoint)),
-      right: listToTree(list.slice(midpoint+1)),
-    }
+      right: listToTree(list.slice(midpoint + 1)),
+    };
     return root;
   }
-}
+};
 
 describe('#listToTree', () => {
   it('should convert a list to a tree', () => {
-    expect(listToTree([1,2,3])).to.deep.equal({
+    expect(listToTree([1, 2, 3])).to.deep.equal({
       val: 2,
       left: {val: 1, right: null, left: null},
       right: {val: 3, right: null, left: null},
@@ -122,7 +122,7 @@ describe('#listToTree', () => {
   });
 
   it('should convert a larger list to a tree', () => {
-    expect(listToTree([1,3,7,9,10,12,14])).to.deep.equal({
+    expect(listToTree([1, 3, 7, 9, 10, 12, 14])).to.deep.equal({
       val: 9,
         left: {val: 3,
           left: {val: 1, left: null, right: null},
@@ -131,12 +131,12 @@ describe('#listToTree', () => {
         right: {val: 12,
           left: {val: 10, left: null, right: null},
           right: {val: 14, left: null, right: null},
-        }
+        },
     });
   });
 
   it('should convert an even-length list to a tree', () => {
-    expect(listToTree([0,1,3,7,9,10,12,14])).to.deep.equal({
+    expect(listToTree([0, 1, 3, 7, 9, 10, 12, 14])).to.deep.equal({
       val: 9,
         left: {val: 3,
           left: {val: 1,
@@ -147,9 +147,9 @@ describe('#listToTree', () => {
         right: {val: 12,
           left: {val: 10, left: null, right: null},
           right: {val: 14, left: null, right: null},
-        }
+        },
     });
-  })
+  });
 
   it('should convert empty list to null', () => {
     expect(listToTree([])).to.deep.equal(null);
@@ -160,11 +160,11 @@ describe('#listToTree', () => {
 // nodes at each depth.
 
 interface ListSpec<T> {
-  head: ListNode<T>,
-  tail: ListNode<T>,
-};
+  head: ListNode<T>;
+  tail: ListNode<T>;
+}
 
-function treeToTierListsHelper<T> (
+function treeToTierListsHelper<T>(
   root: TreeNode<T> | null,
   depth: number,
   map: Map<number, ListSpec<T>>,
@@ -186,14 +186,14 @@ function treeToTierListsHelper<T> (
   treeToTierListsHelper(root.right, depth + 1, map);
 }
 
-function treeToTierLists<T> (
+function treeToTierLists<T>(
   root: TreeNode<T> | null,
 ): Map<number, ListNode<T>> {
   const map = new Map<number, ListSpec<T>>();
   treeToTierListsHelper(root, 0, map);
 
   const result = new Map<number, ListNode<T>>();
-  for (let ent of map.entries()) {
+  for (const ent of map.entries()) {
     result.set(ent[0], ent[1].head);
   }
   return result;
@@ -215,7 +215,7 @@ describe('#treeToTierLists', () => {
     expect(actualKeys).to.deep.equal(expectedKeys);
 
 
-    for (let key of expectedKeys) {
+    for (const key of expectedKeys) {
       expect(actual.get(key)).to.deep.equal(expected.get(key));
     }
   });
@@ -225,8 +225,8 @@ describe('#treeToTierLists', () => {
 // Graphs
 
 interface GraphNode<T> {
-  val: T,
-  neighbors: Array<GraphNode<T>>,
+  val: T;
+  neighbors: Array<GraphNode<T>>;
 }
 
 const visit = (t: any) => {
@@ -239,7 +239,7 @@ function dfsHelper<T>(root: GraphNode<T>, visited: Set<GraphNode<T>>) {
   }
   visited.add(root);
   visit(root);
-  for (let neighbor of root.neighbors) {
+  for (const neighbor of root.neighbors) {
     dfsHelper(neighbor, visited);
   }
 }

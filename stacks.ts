@@ -2,22 +2,22 @@ import {expect} from 'chai';
 
 // implement a stack that supports querying for the minimum element
 class MinStack<T> {
-  data: Array<T>;
-  mins: Array<T>;
+  private data: Array<T>;
+  private mins: Array<T>;
 
   constructor() {
     this.data = [];
     this.mins = [];
   }
 
-  push(val: T): void {
+  public push(val: T): void {
     if (this.mins.length === 0 || val <= this.min()) {
       this.mins.push(val);
     }
     this.data.push(val);
   }
 
-  pop() : T {
+  public pop(): T {
     if (this.data.length === 0) {
       throw new Error('empty stack');
     }
@@ -29,11 +29,11 @@ class MinStack<T> {
     return popped;
   }
 
-  peek() : T {
+  public peek(): T {
     return this.data[this.data.length - 1];
   }
 
-  min(): T {
+  public min(): T {
     if (this.mins.length === 0) {
       throw new Error('empty stack');
     } else {
@@ -66,7 +66,7 @@ describe('MinStack', () => {
     expect(stack.min()).to.deep.equal(0);
     stack.pop();
     expect(stack.min()).to.deep.equal(1);
-  })
+  });
 
   it('should throw on empty pop()', () => {
     expect(() => new MinStack<number>().pop()).to.throw(Error, /empty/);
@@ -83,9 +83,9 @@ describe('MinStack', () => {
 type Stack<T> = Array<T>;
 
 class SetOfStacks<T> {
-  stacks: Array<Stack<T>>;
-  capacity: number;
-  currentStack: Stack<T>;
+  public stacks: Array<Stack<T>>;
+  private capacity: number;
+  private currentStack: Stack<T>;
 
   constructor({capacity}: {capacity: number}) {
     this.currentStack = [];
@@ -93,7 +93,7 @@ class SetOfStacks<T> {
     this.capacity = capacity;
   }
 
-  push(val: T) {
+  public push(val: T) {
     if (this.currentStack.length >= this.capacity) {
       this.currentStack = [];
       this.stacks.push(this.currentStack);
@@ -101,7 +101,7 @@ class SetOfStacks<T> {
     this.currentStack.push(val);
   }
 
-  pop(): T {
+  public pop(): T {
     if (this.currentStack.length === 0 && this.stacks.length === 1) {
       // current stack empty AND no fallback; throw empty stack exception
       throw new Error('empty stack');
@@ -144,7 +144,7 @@ describe('SetOfStacks', () => {
     expect(stack.pop()).to.deep.equal(1);
 
     expect(() => stack.pop()).to.throw(Error, /empty/);
-  })
+  });
 
   it('should enforce max capacity', () => {
     const stack = new SetOfStacks({capacity: 1});
@@ -157,19 +157,19 @@ describe('SetOfStacks', () => {
 // implement a queue using two stacks
 
 class StackQueue<T> {
-  inbound: Array<T>;
-  outbound: Array<T>;
+  private inbound: Array<T>;
+  private outbound: Array<T>;
 
   constructor() {
     this.inbound = [];
     this.outbound = [];
   }
 
-  add(val: T) {
+  public add(val: T) {
     this.inbound.push(val);
   }
 
-  remove() {
+  public remove() {
     if (this.outbound.length === 0 && this.inbound.length === 0) {
       throw new Error('empty queue');
     } else if (this.outbound.length === 0) {
@@ -221,13 +221,13 @@ function sort<T>(stack: Stack<T>): Stack<T> {
   const helper: Stack<T> = [];
 
   while (stack.length !== 0) {
-    let popped = stack.pop()!;
-    if (helper.length === 0 || helper[helper.length-1] >= popped) {
+    const popped = stack.pop()!;
+    if (helper.length === 0 || helper[helper.length - 1] >= popped) {
       // we can add the element and maintain the invariant
       helper.push(popped);
     } else {
       // drain until invariant is preserved
-      while (helper.length > 0 && helper[helper.length-1] < popped) {
+      while (helper.length > 0 && helper[helper.length - 1] < popped) {
         stack.push(helper.pop()!);
       }
       helper.push(popped);
@@ -239,7 +239,7 @@ function sort<T>(stack: Stack<T>): Stack<T> {
 
 describe('sort', () => {
   it('sorts a stack', () => {
-    expect(sort([3,5,1,2,4,6])).to.deep.equal([6,5,4,3,2,1]);
+    expect(sort([3, 5, 1, 2, 4, 6])).to.deep.equal([6, 5, 4, 3, 2, 1]);
   });
   it('sorts an empty stack', () => {
     expect(sort([])).to.deep.equal([]);

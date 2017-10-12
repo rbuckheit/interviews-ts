@@ -4,9 +4,9 @@ import {expect} from 'chai';
 
 const hasUniqueChars = (input: string) => {
   const map: any = {};
-  for (var c of input) {
+  for (const c of input) {
     if (map[c] != null) {
-      return false
+      return false;
     } else {
       map[c] = true;
     }
@@ -76,8 +76,8 @@ const isOneAwayByRemoval = (s1: string, s2: string) => {
   let $s2Idx = 0;
   let $differentChars = 0;
   while ($differentChars <= 1 && $s1Idx < s1.length) {
-    let $s1Char = s1[$s1Idx];
-    let $s2Char = s2[$s2Idx];
+    const $s1Char = s1[$s1Idx];
+    const $s2Char = s2[$s2Idx];
 
     if ($s2Idx >= s2.length || $s1Char !== $s2Char) {
       $differentChars += 1;
@@ -106,14 +106,14 @@ const withinEditDistance = (s1: Array<string>, s2: Array<string>, editsLeft: num
 
 const oneAwayRecursive = (s1: string, s2: string) => {
   return withinEditDistance(Array.from(s1), Array.from(s2), 1);
-}
+};
 
 const oneAwayAlgos = [
   {name: 'oneAway', function: oneAway},
   {name: 'oneAwayRecursive', function: oneAwayRecursive},
-]
+];
 
-oneAwayAlgos.forEach(algo => {
+oneAwayAlgos.forEach((algo) => {
   describe('#' + algo.name, () => {
     it('should return true if one away by removal', () => {
       expect(algo.function('ryan', 'ran')).to.deep.equal(true);
