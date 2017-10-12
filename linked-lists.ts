@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 
-interface ListNode<T> {
+export interface ListNode<T> {
   val: T,
   next: ListNode<T> | null,
 };

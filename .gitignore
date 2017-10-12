@@ -4,3 +4,4 @@ node_modules
 *.sublime-project
 npm-debug.log
 build/
+architecture
